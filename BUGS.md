@@ -53,3 +53,13 @@ Keep this file in the repo and **commit it** with your fixes.
 **What is wrong:** The new member appears in the member count and balances, but is missing from “Paid so far” because the memoized list was not recalculated when `members` changed.
 
 **What I changed:** I added `members` to the memo dependency list so the summary refreshes when a member is added.
+
+---
+
+## Bug 6
+
+**How to reproduce:** Open the app and inspect a member with a positive balance, then inspect a member with a negative balance.
+
+**What is wrong:** Positive balances mean the group owes that person, but the Balances panel labeled them as owing money. Negative balances were labeled the opposite way.
+
+**What I changed:** I corrected the balance labels and CSS classes so positive balances show as owed and negative balances show as owing.
