@@ -2,16 +2,28 @@ export function formatDate(date) {
   if (date instanceof Date && !Number.isNaN(date.getTime())) {
     return date.toLocaleDateString("en-IN", {
       day: "numeric",
-      month: "short",
+      month: "numeric",
       year: "numeric",
     });
   }
   if (typeof date === "string") {
-    return date.slice(0, 10);
+    return new Date(date).toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    });
   }
   return String(date);
 }
 
 export function dateValue(date) {
-  return date;
+  if (date instanceof Date && !Number.isNaN(date.getTime())) {
+    return date.getTime();
+  }
+  if (typeof date === "string") {
+    const parsed = new Date(date);
+    return Number.isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+  }
+  const value = Number(date);
+  return Number.isFinite(value) ? value : 0;
 }
