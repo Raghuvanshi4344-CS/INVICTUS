@@ -30,10 +30,12 @@ export default function App() {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const payerFilter = paidBy === "" ? "" : Number(paidBy);
+
     return state.expenses.filter((e) => {
       if (q && !e.description.toLowerCase().includes(q)) return false;
       if (category !== "All" && e.category !== category) return false;
-      if (paidBy !== "" && e.paidBy !== paidBy) return false;
+      if (payerFilter !== "" && e.paidBy !== payerFilter) return false;
       return true;
     });
   }, [state.expenses, query, category, paidBy]);

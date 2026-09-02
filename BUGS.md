@@ -25,3 +25,11 @@ Keep this file in the repo and **commit it** with your fixes.
 **What I changed:** I corrected the balance math so the full payment is counted for the payer and only the actual shares are deducted from the people in the split.
 
 ---
+
+## Bug 3
+
+**How to reproduce:** Open the app and choose a payer from the “Paid by” filter. The list does not narrow to that person even though the filter control is active.
+
+**What is wrong:** The filter value from the dropdown was stored as a string, but the expense data stores payer IDs as numbers. Since the comparison was `string !== number`, every payer filter looked like it matched nothing.
+
+**What I changed:** I normalized the filter value to a numeric ID before comparing it against each expense’s `paidBy` value so the payer filter works correctly again.
