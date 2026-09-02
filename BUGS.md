@@ -43,3 +43,13 @@ Keep this file in the repo and **commit it** with your fixes.
 **What is wrong:** The form only checked that percentages added up to 100, so negative percentages created invalid shares and corrupted balances and settlements.
 
 **What I changed:** I rejected negative custom percentages before saving an expense.
+
+---
+
+## Bug 5
+
+**How to reproduce:** Add a new member and check the “Paid so far” list in the Summary panel.
+
+**What is wrong:** The new member appears in the member count and balances, but is missing from “Paid so far” because the memoized list was not recalculated when `members` changed.
+
+**What I changed:** I added `members` to the memo dependency list so the summary refreshes when a member is added.
