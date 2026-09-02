@@ -5,6 +5,10 @@ export function formatMoney(amount) {
   return `${sign}$${Math.abs(n).toFixed(2)}`;
 }
 
+export function normalizeMoney(amount) {
+  return Math.round(Number(amount) * 100) / 100;
+}
+
 export function splitEqual(amount, ids) {
   const list = Array.from(ids || []);
   const n = list.length || 1;

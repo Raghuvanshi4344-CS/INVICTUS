@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { percentsSumTo100 } from "../lib/money.js";
+import { normalizeMoney, percentsSumTo100 } from "../lib/money.js";
 
 const CATEGORIES = ["Food", "Travel", "Fun", "Stay"];
 
@@ -40,7 +40,7 @@ export default function AddExpenseForm({ members, onAdd }) {
   function submit(e) {
     e.preventDefault();
     setError("");
-    const n = Number(amount);
+    const n = normalizeMoney(amount);
     if (!description.trim() || !Number.isFinite(n) || n <= 0) {
       setError("Add a description and a positive amount.");
       return;

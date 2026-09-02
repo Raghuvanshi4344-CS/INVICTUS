@@ -63,3 +63,13 @@ Keep this file in the repo and **commit it** with your fixes.
 **What is wrong:** Positive balances mean the group owes that person, but the Balances panel labeled them as owing money. Negative balances were labeled the opposite way.
 
 **What I changed:** I corrected the balance labels and CSS classes so positive balances show as owed and negative balances show as owing.
+
+---
+
+## Bug 7
+
+**How to reproduce:** Add or edit an expense with an amount such as `$10.001` and inspect the displayed total and balances.
+
+**What is wrong:** The stored amount could contain fractions of a cent while split shares were rounded to cents, leaving balances that did not cancel exactly.
+
+**What I changed:** I normalized new and edited expense amounts to cents before storing them, keeping payer totals and split shares consistent.

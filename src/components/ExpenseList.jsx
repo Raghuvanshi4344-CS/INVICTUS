@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { formatMoney } from "../lib/money.js";
+import { formatMoney, normalizeMoney } from "../lib/money.js";
 import { dateValue, formatDate } from "../lib/format.js";
 
 function initials(name) {
@@ -36,8 +36,9 @@ function ExpenseRow({ expense, memberMap, onDelete, onSaveAmount }) {
             onChange={(e) => setDraft(e.target.value)}
             onBlur={() => {
               const n = Number(draft);
-              if (Number.isFinite(n) && n > 0 && n !== Number(expense.amount)) {
-                onSaveAmount(n);
+              const normalized = normalizeMoney(n);
+              if (Number.isFinite(n) && n > 0 && normalized !== Number(expense.amount)) {
+                onSaveAmount(normalized);
               }
             }}
             aria-label={`Edit amount for ${expense.description}`}
