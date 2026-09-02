@@ -73,3 +73,13 @@ Keep this file in the repo and **commit it** with your fixes.
 **What is wrong:** The stored amount could contain fractions of a cent while split shares were rounded to cents, leaving balances that did not cancel exactly.
 
 **What I changed:** I normalized new and edited expense amounts to cents before storing them, keeping payer totals and split shares consistent.
+
+---
+
+## Bug 8
+
+**How to reproduce:** Add an expense, then inspect the Add expense form before entering another bill.
+
+**What is wrong:** The previous expense's description, amount, payer, date, category, and split remained in the form, making accidental duplicate submissions possible.
+
+**What I changed:** I reset the form to its default values after a valid expense is saved.
