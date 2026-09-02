@@ -33,3 +33,13 @@ Keep this file in the repo and **commit it** with your fixes.
 **What is wrong:** The filter value from the dropdown was stored as a string, but the expense data stores payer IDs as numbers. Since the comparison was `string !== number`, every payer filter looked like it matched nothing.
 
 **What I changed:** I normalized the filter value to a numeric ID before comparing it against each expense’s `paidBy` value so the payer filter works correctly again.
+
+---
+
+## Bug 4
+
+**How to reproduce:** Add an expense, choose `Custom %`, and enter `120%` for one person and `-20%` for another.
+
+**What is wrong:** The form only checked that percentages added up to 100, so negative percentages created invalid shares and corrupted balances and settlements.
+
+**What I changed:** I rejected negative custom percentages before saving an expense.

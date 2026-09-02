@@ -49,6 +49,13 @@ export default function AddExpenseForm({ members, onAdd }) {
       setError("Pick at least one person to split with.");
       return;
     }
+    if (
+      splitType === "percent" &&
+      Object.values(percents).some((value) => Number(value) < 0)
+    ) {
+      setError("Percentages cannot be negative.");
+      return;
+    }
     if (splitType === "percent" && !percentsSumTo100(percents)) {
       setError("Percentages must add to 100.");
       return;

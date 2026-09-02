@@ -78,7 +78,7 @@ export default function ExpenseList({
             onDelete={() => onDeleteAt(expense.id)}
             onSaveAmount={(amount) => onUpdateAt(expense.id, { amount })}
           />
-        ))
+        ))  
       )}
     </section>
   );
